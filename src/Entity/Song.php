@@ -5,10 +5,12 @@ namespace App\Entity;
 use ApiPlatform\Core\Annotation\ApiResource;
 use App\Repository\SongRepository;
 use Doctrine\ORM\Mapping as ORM;
-
+use ApiPlatform\Core\Annotation\ApiFilter;
+use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\RangeFilter;
 /**
  * @ApiResource()
  * @ORM\Entity(repositoryClass=SongRepository::class)
+ * @ApiFilter(RangeFilter::class, properties={"length"})
  */
 class Song
 {
