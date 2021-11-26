@@ -4,14 +4,18 @@ namespace App\Entity;
 
 use ApiPlatform\Core\Annotation\ApiResource;
 use App\Repository\ArtistRepository;
+use ApiPlatform\Core\Annotation\ApiFilter;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Annotation\Groups;
+use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
+
 
 /**
  * @ApiResource(normalizationContext={"groups"={"outArtist"}})
  * @ORM\Entity(repositoryClass=ArtistRepository::class)
+ * @ApiFilter(SearchFilter::class, properties={"name": "partial"})
  */
 class Artist
 {
