@@ -7,9 +7,10 @@ use App\Repository\ArtistRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
- * @ApiResource()
+ * @ApiResource(normalizationContext={"groups"={"outArtist"}})
  * @ORM\Entity(repositoryClass=ArtistRepository::class)
  */
 class Artist
@@ -18,21 +19,25 @@ class Artist
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
+     * @Groups({"outArtist"})
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups({"outArtist"})
      */
     private $name;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups({"outArtist"})
      */
     private $style;
 
     /**
      * @ORM\OneToMany(targetEntity=Album::class, mappedBy="artist", orphanRemoval=true)
+     * @Groups({"outArtist"})
      */
     private $albums;
 
