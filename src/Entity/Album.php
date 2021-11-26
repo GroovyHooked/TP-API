@@ -10,7 +10,13 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
- * @ApiResource(normalizationContext={"groups"={"outAlbum"}})
+ * @ApiResource(
+ *     normalizationContext={"groups"={"outAlbum"}},
+ *     collectionOperations={
+ *         "get",
+ *         "post"={"security"="is_granted('ROLE_USER')"}
+ *     }
+ *     )
  * @ORM\Entity(repositoryClass=AlbumRepository::class)
  */
 class Album

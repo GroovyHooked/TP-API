@@ -13,7 +13,13 @@ use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
 
 
 /**
- * @ApiResource(normalizationContext={"groups"={"outArtist"}})
+ * @ApiResource(
+ *     normalizationContext={"groups"={"outArtist"}},
+ *     collectionOperations={
+ *         "get",
+ *         "post"={"security"="is_granted('ROLE_USER')"}
+ *     }
+ *     )
  * @ORM\Entity(repositoryClass=ArtistRepository::class)
  * @ApiFilter(SearchFilter::class, properties={"name": "partial"})
  */

@@ -8,7 +8,10 @@ use Doctrine\ORM\Mapping as ORM;
 use ApiPlatform\Core\Annotation\ApiFilter;
 use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\RangeFilter;
 /**
- * @ApiResource()
+ * @ApiResource(collectionOperations={
+ *         "get",
+ *         "post"={"security"="is_granted('ROLE_USER')"}
+ *     })
  * @ORM\Entity(repositoryClass=SongRepository::class)
  * @ApiFilter(RangeFilter::class, properties={"length"})
  */
